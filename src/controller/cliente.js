@@ -1,7 +1,7 @@
 import ServiceCliente from '../service/cliente.js'
 
 class ControllerCliente {
-  async PegarTodos(req, res) {
+  async PegarTodos(_, res) {
     try {
       const clientes = await ServiceCliente.PegarTodos()
 

@@ -1,11 +1,12 @@
 import express from "express";
 import bancodados from './config/database.js'
-import router from './router/cliente.js'
+import routerCliente from './router/cliente.js'
+import routerGato from './router/gato.js'
 
 const app = express()
 app.use(express.json())
 
-app.use('/api/v1', router)
+app.use('/api/v1', routerCliente, routerGato)
 
 const port = 3000
 bancodados.db

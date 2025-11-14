@@ -1,32 +1,32 @@
-import ServiceGato from '../service/gato.js'
+import ServiceCat from '../service/cat.js'
 
-class ControllerGato {
-  async PegarTodos(_, res) {
+class ControllerCat {
+  async FindAll(_, res) {
     try {
-      const gatos = await ServiceGato.PegarTodos()
+      const cats = await ServiceCat.FindAll()
 
       res.status(200).send({
-        data: gatos
+        data: cats
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async PegarUm(req, res) {
+  async FindOne(req, res) {
     try {
       const { id } = req.params
-      const gato = await ServiceGato.PegarUm(id)
+      const cat = await ServiceCat.FindOne(id)
 
       res.status(200).send({
-        data: gato
+        data: cat
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async Criar(req, res) {
+  async Create(req, res) {
     try {
       res.status(200).send('gato')
     } catch (error) {
@@ -34,7 +34,7 @@ class ControllerGato {
     }
   }
 
-  async Alterar(req, res) {
+  async Update(req, res) {
     try {
       res.status(200).send('gato')
     } catch (error) {
@@ -42,7 +42,7 @@ class ControllerGato {
     }
   }
 
-  async Deletar(req, res) {
+  async Delete(req, res) {
     try {
       res.status(200).send('gato')
     } catch (error) {
@@ -51,4 +51,4 @@ class ControllerGato {
   }
 }
 
-export default new ControllerGato()
+export default new ControllerCat()

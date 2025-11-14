@@ -1,63 +1,63 @@
-import ServiceCliente from '../service/cliente.js'
+import ServiceCustomer from '../service/customer.js'
 
-class ControllerCliente {
-  async PegarTodos(_, res) {
+class ControllerCustomer {
+  async FindAll(_, res) {
     try {
-      const clientes = await ServiceCliente.PegarTodos()
+      const customers = await ServiceCustomer.FindAll()
 
       res.status(200).send({
-        data: clientes
+        data: customers
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async PegarUm(req, res) {
+  async FindOne(req, res) {
     try {
       const { id } = req.params
-      const cliente = await ServiceCliente.PegarUm(id)
+      const customer = await ServiceCustomer.FindOne(id)
 
       res.status(200).send({
-        data: cliente
+        data: customer
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async Criar(req, res) {
+  async Create(req, res) {
     try {
-      const { nome, telefone } = req.body
-      await ServiceCliente.Criar(nome, telefone)
+      const { name, phone_number } = req.body
+      await ServiceCustomer.Create(name, phone_number)
 
       res.status(201).send({
-        msg: 'Produto criado com sucesso!'
+        msg: 'Cliente criado com sucesso!'
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async Alterar(req, res) {
+  async Update(req, res) {
     try {
       const id = req.params.id
-      const { nome, telefone } = req.body
+      const { name, phone_number } = req.body
 
-      await ServiceCliente.Alterar(id, nome, telefone)
+      await ServiceCustomer.Update(id, name, phone_number)
 
       res.status(200).send({
-        msg: 'Produto alterado com sucesso!'
+        msg: 'Cliente alterado com sucesso!'
       })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
   }
 
-  async Deletar(req, res) {
+  async Delete(req, res) {
     try {
       const id = req.params.id
-      await ServiceCliente.Deletar(id)
+      await ServiceCustomer.Delete(id)
 
       res.status(204).send()
     } catch (error) {
@@ -66,4 +66,4 @@ class ControllerCliente {
   }
 }
 
-export default new ControllerCliente()
+export default new ControllerCustomer()

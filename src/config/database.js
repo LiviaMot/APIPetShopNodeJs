@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-class BancoDados {
+class Database {
   constructor() {
     this.init()
   }
@@ -16,4 +16,4 @@ class BancoDados {
   }
 }
 
-export default new BancoDados()
+export default new Database()

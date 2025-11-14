@@ -1,15 +1,15 @@
 import express from "express";
-import bancodados from './config/database.js'
-import routerCliente from './router/cliente.js'
-import routerGato from './router/gato.js'
+import database from './config/database.js'
+import routerCustomer from './router/customer.js'
+import routerCat from './router/cat.js'
 
 const app = express()
 app.use(express.json())
 
-app.use('/api/v1', routerCliente, routerGato)
+app.use('/api/v1', routerCustomer, routerCat)
 
 const port = 3000
-bancodados.db
+database.db
   .sync({ force: false })
   .then(() => {
     app.listen(port, () => {

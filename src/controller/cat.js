@@ -28,7 +28,12 @@ class ControllerCat {
 
   async Create(req, res) {
     try {
-      res.status(200).send('gato')
+      const { name, breed, gender } = req.body
+      await ServiceCat.Create(name, breed, gender)
+
+      res.status(201).send({
+        msg: 'Gato criado com sucesso!'
+      })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
@@ -36,7 +41,14 @@ class ControllerCat {
 
   async Update(req, res) {
     try {
-      res.status(200).send('gato')
+      const id = req.params.id
+      const { name, breed, gender } = req.body
+
+      await ServiceCat.Update(id, name, breed, gender)
+
+      res.status(200).send({
+        msg: 'Gato alterado com sucesso!'
+      })
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
@@ -44,7 +56,11 @@ class ControllerCat {
 
   async Delete(req, res) {
     try {
-      res.status(200).send('gato')
+      const id = req.params.id
+
+      await ServiceCat.Delete(id)
+
+      res.status(204).send()
     } catch (error) {
       res.status(500).send({ msg: error.message })
     }
